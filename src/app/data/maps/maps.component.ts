@@ -1,5 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { GoogleService } from 'src/app/services/google.service';
+import { StreamService } from 'src/app/services/stream.service';
+import { PipelineService } from 'src/app/services/pipeline-service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-maps',
@@ -7,32 +11,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./maps.component.css']
 })
 export class MapsComponent implements OnInit {
-  public url: string = 'http://localhost:8080/api/pipeline';
-  public mapsUrl: string = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
-  public apiMaps: string = 'AIzaSyA0wl0GTeqSZQOnYkpG_OMYkmw9J8KEOwY';
+  public url: string = environment.URL_JAVA;
   public data: any = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient, 
+    private dataService: PipelineService,
+    private stream: StreamService,
+    private google: GoogleService) { }
 
   ngOnInit(): void {
-    this.buscarEnMaps();
+    this.buscarDatos();
   }
 
-  public buscarEnMaps(): void {
-    this.http.get( this.url ).subscribe(
+  public buscarDatos(): void {
+    this.dataService.obtenerTodos().subscribe(
       data => {
         this.data = data;
         console.log(this.data);
       },
-      err => {}
+      err => { alert(this.data); }
     );
   }
 
   public solicitarRecursos(): void {
-    this.http.get( this.url+"/recolectar" ).subscribe(
+    this.stream.stream().subscribe(
       data => {
         if (data === true) {
-          this.buscarEnMaps();
+          this.buscarDatos();
         }
       },
       err => {  
@@ -48,11 +54,10 @@ export class MapsComponent implements OnInit {
   }
 
   public consultarAlcaldia(id: number, coord: string): any {
-    this.http.get(this.mapsUrl+coord+'&key='+this.apiMaps).subscribe(
+    this.google.buscarAlcaldia( coord ).subscribe(
       resp=> { 
         const data = resp as any;
-        const len = data.results.length;
-        
+        const len = data.results.length;        
         const alcaldia = data.results[len - 4].address_components[0].long_name;
         this.agregarAlcaldia(id, alcaldia);
       },
@@ -63,12 +68,9 @@ export class MapsComponent implements OnInit {
   }
 
   public agregarAlcaldia(idVehiculo: number, alcaldia: string): void {
-    this.http.put(this.url, {
-      idVehiculo,
-      alcaldia
-    }).subscribe(
+    this.dataService.agregarAlcaldia(idVehiculo, alcaldia).subscribe(
       resp=> { 
-        this.buscarEnMaps();
+        this.buscarDatos();
       },
       err => {}
     );

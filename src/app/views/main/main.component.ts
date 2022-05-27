@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { VehicleServiceService } from 'src/app/services/vehicle-service.service';
+import { PipelineService } from 'src/app/services/pipeline-service';
 
 @Component({
   selector: 'app-main',
@@ -24,11 +24,9 @@ export class MainComponent implements OnInit {
     lng: -99.11009979248048
   };
 
-  
-
   constructor(
     private http: HttpClient, 
-    private vService: VehicleServiceService,
+    private vService: PipelineService,
     private toastr: ToastrService) { }
 
   ngOnInit(): void {

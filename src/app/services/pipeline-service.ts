@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class VehicleServiceService {
-  private URL: string = 'http://localhost:8080/api/pipeline';
+export class PipelineService {
+  private URL: string = environment.URL_JAVA;
 
   constructor(private http: HttpClient) { }
 
@@ -24,5 +25,9 @@ export class VehicleServiceService {
   }
   public unidadesPorAlcaldia(alcaldia: string) : Observable<any> {
     return this.http.get(this.URL + '/alcaldia/'+alcaldia);
+  }
+
+  public agregarAlcaldia(idVehiculo: number, alcaldia: string): Observable<any>{
+    return this.http.put(this.URL, { idVehiculo, alcaldia });
   }
 }
