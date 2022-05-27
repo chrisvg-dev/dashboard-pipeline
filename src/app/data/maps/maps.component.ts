@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class MapsComponent implements OnInit {
   public url: string = 'http://localhost:8080/api/pipeline';
   public mapsUrl: string = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
-  public apiMaps: string = 'AIzaSyC8osopMqqqbMP_IVRtRGBtpiB6N5S_XvI';
+  public apiMaps: string = 'AIzaSyA0wl0GTeqSZQOnYkpG_OMYkmw9J8KEOwY';
   public data: any = [];
 
   constructor(private http: HttpClient) { }

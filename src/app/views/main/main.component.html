@@ -1,14 +1,18 @@
 <app-menu></app-menu>
 
 <div class="container mt-5">
-    <form>
-        <input type="text" class="form-control" placeholder="Busca algo">
+    <h2>Busca con base en los siguientes filtros</h2>
+    <ul>
+        <li>Usa * para traer todos los registro</li>
+        <li>Usa "udisponibles" para traer todos las unidades disponibles</li>
+        <li>Usa "alcaldia=nombreAlcaldia" para traer todos las unidades en una alcaldia</li>
+        <li>Usa "id=idVehiculo" para traer la unidad que coincida con el id y mostrarla en el mapa</li>
+    </ul>
+    <form (submit)="filter(value.value)" novalidate #form="ngForm">
+        <input #value type="text" class="form-control" placeholder="Busca algo" required>
     </form>
-
-    <google-map>
-        <map-marker [position]="position" [label]="label">
-
-        </map-marker>
-    </google-map>
-
+    <hr>
+    <datatable *ngIf="isTableVisible" [data]="tableData"></datatable>
+    <item *ngIf="isDataVisible" [position]="position" [data]="data"></item>
+    <alcaldias *ngIf="areAlcaldiasVisible" [data]="alcaldias"></alcaldias>
 </div>

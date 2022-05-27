@@ -1,0 +1,21 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id Vehiculo</th>
+            <th>Status Vehiculo</th>
+            <th>Coordenadas</th>
+            <th>Alcaldia</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of dataTable" >
+            <td>{{ item.idVehiculo }}</td>
+            <td>
+                <span *ngIf="item.statusVehiculo" class="badge text-bg-success">Disponible</span>
+                <span *ngIf="!item.statusVehiculo" class="badge text-bg-danger">No disponible</span>
+            </td>
+            <td>{{ item.ubicacion }}</td>
+            <td>{{ item.alcaldia }}</td>
+        </tr>
+    </tbody>
+</table>

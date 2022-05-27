@@ -1,0 +1,30 @@
+
+    <div class="container">          
+        <div class="container px-4 py-3" id="custom-cards">
+          <div class="row">
+              <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-1.jpg');">
+                <div class="d-flex flex-column h-100 p-2 pb-3 text-white text-shadow-1">
+                  <h2 class="pt-5 mt-2 mb-4 display-6 lh-1 fw-bold">Vehículo con Id {{ data.idVehiculo }}</h2>
+                  <ul class="d-flex list-unstyled mt-auto">
+                    
+                      <li class="d-flex align-items-center me-3">
+                          <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                          <small style="font-size: 20px;">Alcaldia: {{ data.alcaldia }}</small>
+                        </li>
+                      <li class="d-flex align-items-center me-3">
+                      <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                      <small style="font-size: 20px;">Coordenadas: {{ data.ubicacion }}</small>
+                    </li>
+                  
+                  </ul>
+                </div>
+                <div class="text-center mb-5">
+                  <google-map width="100%" [center]="position">
+                      <map-marker class="map" [position]="position"  [label]="label">        
+                      </map-marker>
+                  </google-map>
+                </div>
+              </div>
+          </div>
+        </div>
+          </div>

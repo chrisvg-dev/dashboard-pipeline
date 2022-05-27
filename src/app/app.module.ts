@@ -9,20 +9,34 @@ import { MapsComponent } from './data/maps/maps.component';
 import { MainComponent } from './views/main/main.component';
 import { MenuComponent } from './views/menu/menu.component';
 
-import { GoogleMapsModule } from '@angular/google-maps'
+import { GoogleMapsModule } from '@angular/google-maps';
+import { FormsModule } from '@angular/forms';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
+import { DatatableComponent } from './views/datatable/datatable.component';
+import { ItemComponent } from './views/item/item.component';
+import { AlcaldiasComponent } from './views/alcaldias/alcaldias.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapsComponent,
     MainComponent,
-    MenuComponent
+    MenuComponent,
+    DatatableComponent,
+    ItemComponent,
+    AlcaldiasComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
