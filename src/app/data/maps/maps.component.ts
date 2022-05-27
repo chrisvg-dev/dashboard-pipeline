@@ -43,7 +43,7 @@ export class MapsComponent implements OnInit {
 
   public procesar(): void {
     this.data.forEach(item => {
-      this.consultarAlcaldia(item.id, item.ubicacion);
+      this.consultarAlcaldia(item.id, `${item.latitud},${item.longitud}` );
     });
   }
 
