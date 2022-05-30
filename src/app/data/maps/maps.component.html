@@ -2,36 +2,15 @@
 <div class="px-4 py-5 my-5 text-center">
     <h1 class="display-5 fw-bold">Información</h1>
     <div class="col-lg-6 mx-auto">
-      <p class="lead mb-4"> Para facilitar el uso de este proyecto, a continuación se explica el proceso que se deberá aplicar. </p>
-      <div class="row">
-        <button (click)="solicitarRecursos()" class="btn btn-primary col-md-4">Flujo de datos de origen a bd local</button><br><br>
-        <button (click)="procesar()" class="btn btn-info col-md-4">Asignar alcaldias por ubicación</button><br><br>
-        <a routerLink="/home" class="btn btn-secondary col-md-4"> Ir a la aplicación </a>
-      </div>
+        <p class="lead mb-4"> Para facilitar el uso de este proyecto, a continuación se explica el proceso que se deberá aplicar. </p>
+        <div class="row">
+            <button (click)="solicitarRecursos()" class="btn btn-primary col-md-5">1. Descarga los datos</button><br><br>
+            <div class="col-md-1"></div>
+            <button (click)="procesar()" class="btn btn-secondary col-md-5">2. Alcaldia en Google Maps</button><br><br>
+        </div>
     </div>
-  </div>
+</div>
 
 <div class="container">
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id Vehiculo</th>
-                <th>Status Vehiculo</th>
-                <th>Coordenadas</th>
-                <th>Alcaldia</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of data">
-                <td>{{ item.idVehiculo }}</td>
-                <td>
-                    <span *ngIf="item.statusVehiculo" class="badge text-bg-success">Disponible</span>
-                    <span *ngIf="!item.statusVehiculo" class="badge text-bg-danger">No disponible</span>
-                </td>
-                <td> {{ item.latitud }}, {{ item.longitud }} </td>
-                <td>{{ item.alcaldia }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <datatable [data]="data"></datatable>
 </div>

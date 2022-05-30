@@ -28,7 +28,6 @@ export class MapsComponent implements OnInit {
     this.dataService.obtenerTodos().subscribe(
       data => {
         this.data = data;
-        console.log(this.data);
       },
       err => { alert(this.data); }
     );
