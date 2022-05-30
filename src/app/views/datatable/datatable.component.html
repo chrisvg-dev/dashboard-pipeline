@@ -15,7 +15,7 @@
                 <span *ngIf="!item.statusVehiculo" class="badge text-bg-danger">No disponible</span>
             </td>
             <td>{{ item.latitud }}, {{ item.longitud }} </td>
-            <td>{{ item.alcaldia }}</td>
+            <td>{{ item.alcaldia.name }}</td>
         </tr>
     </tbody>
 </table>

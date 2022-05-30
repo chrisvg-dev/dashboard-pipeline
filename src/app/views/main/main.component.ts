@@ -37,20 +37,31 @@ export class MainComponent implements OnInit {
     switch(filtro[0]) {
       case '*': console.log('Data filter')
         this.vService.obtenerTodos().subscribe(
-          resp => { this.tableData = resp; this.isTableVisible = true; this.isDataVisible = false; }
+          resp => { 
+            this.tableData = resp.data.records;
+            this.isTableVisible = true; 
+            this.isDataVisible = false; 
+            this.areAlcaldiasVisible = false;
+          }
         );
         break;
       case 'alcaldia': 
         console.log('Alcaldia filter'); 
         this.vService.unidadesPorAlcaldia(filtro[1]).subscribe(
-          resp => { this.tableData = resp; this.isTableVisible = true; this.isDataVisible = false; }
+          resp => { 
+            console.log(resp);
+            this.tableData = resp.data.buscarPorAlcaldia; 
+            this.isTableVisible = true; 
+            this.isDataVisible = false; 
+            this.areAlcaldiasVisible = false;
+          }
         );
         break;
       case 'udisponibles': 
         console.log('Vehicles available filter'); 
         this.vService.unidadesDisponibles().subscribe(
           resp => { 
-            this.tableData = resp; 
+            this.tableData = resp.data.unidadesDisponibles; 
             this.isTableVisible = true; 
             this.isDataVisible = false; 
             this.areAlcaldiasVisible = false;
@@ -61,7 +72,8 @@ export class MainComponent implements OnInit {
         console.log('Todas las alcaldias'); 
         this.vService.obtenerAlcaldias().subscribe(
           resp => { 
-            this.alcaldias = resp; 
+            this.alcaldias = resp.data.alcaldiasDisponibles;
+            console.log(this.alcaldias); 
             this.isTableVisible = false; 
             this.isDataVisible = false; 
             this.areAlcaldiasVisible = true;
@@ -74,13 +86,16 @@ export class MainComponent implements OnInit {
           resp => { 
             console.log(resp === null)
             if (resp !== null) {
-              this.data = resp;
+              
+              this.data = resp.data.buscarPorId;
+              console.log(this.data);
+
               this.tableData = [];
               this.isTableVisible = false;
               this.isDataVisible = true;
               this.areAlcaldiasVisible = false;
 
-              this.position = { lat: resp.latitud, lng: resp.longitud };
+              this.position = { lat: this.data.latitud, lng: this.data.longitud };
 
               console.log(this.position)
 

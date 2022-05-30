@@ -26,8 +26,8 @@ export class MapsComponent implements OnInit {
 
   public buscarDatos(): void {
     this.dataService.obtenerTodos().subscribe(
-      data => {
-        this.data = data;
+      resp => {
+        this.data = resp.data.records;
       },
       err => { alert(this.data); }
     );
@@ -45,34 +45,4 @@ export class MapsComponent implements OnInit {
       }
     );
   }
-
-  public procesar(): void {
-    this.data.forEach(item => {
-      this.consultarAlcaldia(item.id, `${item.latitud},${item.longitud}` );
-    });
-  }
-
-  public consultarAlcaldia(id: number, coord: string): any {
-    this.google.buscarAlcaldia( coord ).subscribe(
-      resp=> { 
-        const data = resp as any;
-        const len = data.results.length;        
-        const alcaldia = data.results[len - 4].address_components[0].long_name;
-        this.agregarAlcaldia(id, alcaldia);
-      },
-      err => {
-        return null;
-      }
-    );
-  }
-
-  public agregarAlcaldia(idVehiculo: number, alcaldia: string): void {
-    this.dataService.agregarAlcaldia(idVehiculo, alcaldia).subscribe(
-      resp=> { 
-        this.buscarDatos();
-      },
-      err => {}
-    );
-  }
-
 }

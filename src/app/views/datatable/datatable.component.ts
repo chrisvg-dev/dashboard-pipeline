@@ -11,6 +11,7 @@ export class DatatableComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.dataTable)
   }
 
 }

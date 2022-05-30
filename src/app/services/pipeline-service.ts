@@ -8,26 +8,28 @@ import { environment } from 'src/environments/environment';
 })
 export class PipelineService {
   private URL: string = environment.URL_JAVA;
+  private UR_GRAPHL: string = environment.URL_JAVA_GRAPH;
 
   constructor(private http: HttpClient) { }
 
   public obtenerTodos() : Observable<any> {
-    return this.http.get(this.URL);
+    const query = '{ records { idVehiculo statusVehiculo longitud latitud alcaldia { name } } }';
+    return this.http.post(this.UR_GRAPHL, query);
   }
   public obtenerAlcaldias() : Observable<any> {
-    return this.http.get(this.URL + "/alcaldias");
+    const query = '{ alcaldiasDisponibles { name } }';
+    return this.http.post(this.UR_GRAPHL, query);
   }
   public unidadesDisponibles() : Observable<any> {
-    return this.http.get(this.URL + '/udisponibles');
+    const query = '{ unidadesDisponibles { idVehiculo statusVehiculo longitud latitud alcaldia { name } } }';
+    return this.http.post(this.UR_GRAPHL, query);
   }
   public vehicleById(id: number) : Observable<any> {
-    return this.http.get(this.URL + '/vehiculo/'+id);
+    const query = `{ buscarPorId(idVehiculo:${id}) { idVehiculo statusVehiculo longitud latitud alcaldia { name } } }`;
+    return this.http.post(this.UR_GRAPHL, query);
   }
   public unidadesPorAlcaldia(alcaldia: string) : Observable<any> {
-    return this.http.get(this.URL + '/alcaldia/'+alcaldia);
-  }
-
-  public agregarAlcaldia(idVehiculo: number, alcaldia: string): Observable<any>{
-    return this.http.put(this.URL, { idVehiculo, alcaldia });
+    const query = `{ buscarPorAlcaldia(alcaldia:"${alcaldia}") { idVehiculo statusVehiculo longitud latitud alcaldia { name } } }`;
+    return this.http.post(this.UR_GRAPHL, query);
   }
 }
