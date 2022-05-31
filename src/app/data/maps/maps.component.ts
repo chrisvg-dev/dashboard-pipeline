@@ -4,6 +4,7 @@ import { GoogleService } from 'src/app/services/google.service';
 import { StreamService } from 'src/app/services/stream.service';
 import { PipelineService } from 'src/app/services/pipeline-service';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-maps',
@@ -18,7 +19,8 @@ export class MapsComponent implements OnInit {
     private http: HttpClient, 
     private dataService: PipelineService,
     private stream: StreamService,
-    private google: GoogleService) { }
+    private google: GoogleService,
+    private toast: ToastrService) { }
 
   ngOnInit(): void {
     this.buscarDatos();
@@ -27,6 +29,7 @@ export class MapsComponent implements OnInit {
   public buscarDatos(): void {
     this.dataService.obtenerTodos().subscribe(
       resp => {
+        console.log(resp);
         this.data = resp.data.records;
       },
       err => { alert(this.data); }
@@ -36,9 +39,14 @@ export class MapsComponent implements OnInit {
   public solicitarRecursos(): void {
     this.stream.stream().subscribe(
       data => {
-        if (data === true) {
-          this.buscarDatos();
-        }
+        setTimeout(() => { 
+          this.toast.info("Los datos se han cargado", "Información");
+            if (data === true) {          
+              this.buscarDatos();
+            } 
+          }, 
+          2000
+        )
       },
       err => {  
         alert(err);

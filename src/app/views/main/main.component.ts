@@ -30,20 +30,28 @@ export class MainComponent implements OnInit {
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.buscarTodos();
+  }
+
+  public buscarTodos(): void {
+    this.vService.obtenerTodos().subscribe(
+      resp => { 
+        this.tableData = resp.data.records;
+        this.isTableVisible = true; 
+        this.isDataVisible = false; 
+        this.areAlcaldiasVisible = false;
+      },
+      error => {
+        this.toastr.error("No hay datos", "Error");
+      }
+    );
   }
 
   public filter(value: string): void {
     let filtro = value.split("=");
     switch(filtro[0]) {
       case '*': console.log('Data filter')
-        this.vService.obtenerTodos().subscribe(
-          resp => { 
-            this.tableData = resp.data.records;
-            this.isTableVisible = true; 
-            this.isDataVisible = false; 
-            this.areAlcaldiasVisible = false;
-          }
-        );
+        this.buscarTodos();
         break;
       case 'alcaldia': 
         console.log('Alcaldia filter'); 

@@ -13,7 +13,7 @@ export class PipelineService {
   constructor(private http: HttpClient) { }
 
   public obtenerTodos() : Observable<any> {
-    const query = '{ records { idVehiculo statusVehiculo longitud latitud alcaldia { name } } }';
+    const query = '{ records{ idVehiculo statusVehiculo longitud latitud alcaldia { name } } }';
     return this.http.post(this.UR_GRAPHL, query);
   }
   public obtenerAlcaldias() : Observable<any> {
