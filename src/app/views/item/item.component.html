@@ -1,6 +1,6 @@
 
     <div class="container">          
-        <div class="container px-4 py-3" id="custom-cards">
+        <div class="container px-4 py-3" id="custom-cards" *ngIf="data">
           <div class="row">
               <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-1.jpg');">
                 <div class="d-flex flex-column h-100 p-2 pb-3 text-white text-shadow-1">
@@ -27,4 +27,8 @@
               </div>
           </div>
         </div>
-          </div>
+
+        <div *ngIf="!data">
+          <h1>El objeto no existe</h1>
+        </div>
+      </div>

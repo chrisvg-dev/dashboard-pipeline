@@ -15,10 +15,8 @@ export class MapsComponent implements OnInit {
   public data: any = [];
 
   constructor(
-    private http: HttpClient, 
     private dataService: PipelineService,
-    private stream: StreamService,
-    private google: GoogleService) { }
+    private stream: StreamService) { }
 
   ngOnInit(): void {
     this.buscarDatos();
