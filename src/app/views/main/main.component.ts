@@ -87,7 +87,7 @@ export class MainComponent implements OnInit {
         break;
       case 'id': 
         console.log('Vehicles available filter'); 
-        this.vService.vehicleById(parseInt(filtro[1])).subscribe(
+        this.vService.vehiculoPorId(parseInt(filtro[1])).subscribe(
           resp => { 
             console.log(resp === null)
             if (resp !== null) {
