@@ -3,5 +3,5 @@
  */
 export const environment = {
   production: false,
-  URL_SERVICE: 'http://172.29.138.56:31775/'
+  URL_SERVICE: 'http://localhost:9090/'
 };
