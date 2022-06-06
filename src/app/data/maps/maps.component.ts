@@ -10,7 +10,6 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./maps.component.css']
 })
 export class MapsComponent implements OnInit {
-  public url: string = environment.URL_JAVA;
   public data: any = [];
 
   constructor(

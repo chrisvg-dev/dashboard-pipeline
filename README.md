@@ -7,6 +7,10 @@ Este proyecto está realizado con el objetivo de consumir el servicio de data-pi
 2. Tener instalado Angular CLI
 3. Editor de código para modificar la URL del servicio
 
+## Estructura de esta aplicación
+1. Ventana data permite al usuario recolectar la información siempre y cuando se tenga conexión con el backend que proporciona el servicio.
+2. Ventana "En acción" de manejo de datos, permite hacer las operaciones solicitadas en la prueba técnica.
+
 ## Cómo hacer funcionar la aplicación?
 1. Descargar el proyecto
 2. Abrirlo en un editor de código

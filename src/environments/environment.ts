@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  URL_JAVA: 'http://localhost:9090/api/pipeline',
-  URL_JAVA_GRAPH: 'http://localhost:9090/api/graph'
+  URL_SERVICE: 'http://localhost:9090/'
 };
 
 /*

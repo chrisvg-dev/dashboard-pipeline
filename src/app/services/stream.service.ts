@@ -7,11 +7,11 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class StreamService {
-  private URL: string = environment.URL_JAVA;
+  private URL: string = environment.URL_SERVICE;
 
   constructor(private http: HttpClient) { }
 
   public stream() : Observable<any> {
-    return this.http.get(this.URL + "/recolectar");
+    return this.http.get(this.URL + "api/pipeline/recolectar");
   }
 }
