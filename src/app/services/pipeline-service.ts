@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class PipelineService {
-  private URL: string = environment.URL_SERVICE;
+  private URL: string = environment.URL_SERVICE + "api/graph";
 
   constructor(private http: HttpClient) { }
 
