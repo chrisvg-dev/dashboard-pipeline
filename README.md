@@ -14,7 +14,7 @@ Este proyecto está realizado con el objetivo de consumir el servicio de data-pi
 ## Cómo hacer funcionar la aplicación?
 1. Descargar el proyecto
 2. Abrirlo en un editor de código
-3. Modificar el archivo src/environments/environment.ts y en el apartado de URL agregar agregar la URL devuelva por el proyecto data-pipeline al ejecutar el comando **minikube service springboot-datapipeline-svc**.
+3. Modificar el archivo src/environments/environment.ts y en el apartado de URL_SERVICE agregar la URL devuelva por el proyecto data-pipeline al ejecutar el comando **minikube service springboot-datapipeline-svc**.
 4. Abrirlo desde una terminal
 5. Escribir el comando npm install.
 6. Lanzar el proyecto con el comando ng serve
