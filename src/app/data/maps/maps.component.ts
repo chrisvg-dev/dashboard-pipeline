@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { StreamService } from 'src/app/services/stream.service';
 import { PipelineService } from 'src/app/services/pipeline-service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-maps',
