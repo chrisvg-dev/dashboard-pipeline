@@ -15,18 +15,23 @@ export class PipelineService {
   constructor(private http: HttpClient) { }
 
   public obtenerTodos() : Observable<any> {
-    return this.http.get(this.URL + "/all");
+    const query = '{ records{ idVehiculo statusVehiculo longitud latitud alcaldia { name } } }';
+    return this.http.post(this.URL, query);
   }
   public obtenerAlcaldias() : Observable<any> {
-    return this.http.get(this.URL + "/alcaldiasDisponibles");
+    const query = '{ alcaldiasDisponibles { name } }';
+    return this.http.post(this.URL, query);
   }
   public unidadesDisponibles() : Observable<any> {
-    return this.http.get(this.URL + "/unidadesDisponibles");
+    const query = '{ unidadesDisponibles { idVehiculo statusVehiculo longitud latitud alcaldia { name } } }';
+    return this.http.post(this.URL, query);
   }
-  public vehiculoPorId(id: number) : Observable<any> {
-    return this.http.get(this.URL + "/vehiculos/" + id);
+  public vehicleById(id: number) : Observable<any> {
+    const query = `{ buscarPorId(idVehiculo:${id}) { idVehiculo statusVehiculo longitud latitud alcaldia { name } } }`;
+    return this.http.post(this.URL, query);
   }
   public unidadesPorAlcaldia(alcaldia: string) : Observable<any> {
-    return this.http.get(this.URL + "/alcaldias/" + alcaldia);
+    const query = `{ buscarPorAlcaldia(alcaldia:"${alcaldia}") { idVehiculo statusVehiculo longitud latitud alcaldia { name } } }`;
+    return this.http.post(this.URL, query);
   }
 }
