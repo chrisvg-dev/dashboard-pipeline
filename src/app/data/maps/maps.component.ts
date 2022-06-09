@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StreamService } from 'src/app/services/stream.service';
 import { PipelineService } from 'src/app/services/pipeline-service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-maps',
@@ -12,7 +13,8 @@ export class MapsComponent implements OnInit {
 
   constructor(
     private dataService: PipelineService,
-    private stream: StreamService) { }
+    private stream: StreamService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.buscarDatos();
@@ -30,12 +32,12 @@ export class MapsComponent implements OnInit {
   public solicitarRecursos(): void {
     this.stream.stream().subscribe(
       data => {
-        if (data === true) {
+          this.toastr.info(data, 'Mensaje del servidor');
           this.buscarDatos();
-        }
       },
       err => {  
-        alert(err);
+        this.toastr.warning(err.error.text, 'Advertencia');
+        this.buscarDatos();
       }
     );
   }
