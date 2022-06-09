@@ -26,7 +26,7 @@ export class PipelineService {
     const query = '{ unidadesDisponibles { idVehiculo statusVehiculo longitud latitud alcaldia { name } } }';
     return this.http.post(this.URL, query);
   }
-  public vehicleById(id: number) : Observable<any> {
+  public vehiculoPorId(id: number) : Observable<any> {
     const query = `{ buscarPorId(idVehiculo:${id}) { idVehiculo statusVehiculo longitud latitud alcaldia { name } } }`;
     return this.http.post(this.URL, query);
   }
