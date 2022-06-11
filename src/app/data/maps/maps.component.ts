@@ -32,7 +32,9 @@ export class MapsComponent implements OnInit {
   public solicitarRecursos(): void {
     this.stream.stream().subscribe(
       data => {
-          this.toastr.info(data, 'Mensaje del servidor');
+          if (data.status) {
+            this.toastr.info(data.message, 'Mensaje del servidor');            
+          }
           this.buscarDatos();
       },
       err => {  
